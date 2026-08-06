@@ -1,0 +1,17 @@
+{{Infobox|title1=EPISODE_TITLE|image1=IMAGE_FILENAME.png}}
+
+==Original Dream Journal Entry That Inspired The Episode==
+
+Write the dream episode here.
+
+==Links==
+
+*Episode Link: https://example.com/
+
+==Notes==
+
+This dream anime episode was originally created on January 01, 2026
+
+[[Category:Dream Anime Episode]]
+
+[[Category:Created By Nicholas Benson]]
