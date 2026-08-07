@@ -59,7 +59,6 @@ function shell({ title, description, body, pageClass = '', canonicalPath = '', s
     <nav aria-label="Primary navigation">
       <a href="${homeUrl}#episodes">Episodes</a>
       <a href="https://github.com/${repo}/tree/main/content/episodes">Source</a>
-      <a class="nav-gold" href="https://github.com/${repo}/new/main/content/episodes?filename=new-dream-anime-episode.wiki">Add a page</a>
     </nav>
   </header>
   <main>${body}</main>
@@ -142,7 +141,7 @@ for (const episode of episodes) {
       <aside class="source-panel" aria-label="Page source">
         <p class="eyebrow">Open source dream</p>
         <p>This page is generated from ordinary MediaWiki wikitext.</p>
-        <div class="source-actions">${attribution}<a href="${sourceLink}">View or edit source</a></div>
+        <div class="source-actions">${attribution}<a href="${sourceLink}">View source</a></div>
         <details>
           <summary>Read raw wikitext</summary>
           <pre>${escapeHtml(episode.source)}</pre>
@@ -206,10 +205,9 @@ const body = `<section class="hero">
     <noscript><p>JavaScript enables full-text search. The newest episodes remain available above.</p></noscript>
   </section>
   <section class="contribute">
-    <p class="eyebrow">Keep the constellations growing</p>
-    <h2>One wikitext file becomes one public dream.</h2>
-    <p>Add an episode in GitHub and the archive rebuilds itself—no database, API bridge, or local runner required.</p>
-    <a href="https://github.com/${repo}/new/main/content/episodes?filename=new-dream-anime-episode.wiki">Add a new episode <span aria-hidden="true">↗</span></a>
+    <p class="eyebrow">Agent-managed archive</p>
+    <h2>New dreams arrive through the cloud pipeline.</h2>
+    <p>Episodes are published by Jet's authorized ChatGPT Work agent. The public repository preserves readable source, but this site does not accept public or manual page submissions.</p>
   </section>`;
 
 await writeFile(path.join(distDir, 'index.html'), shell({

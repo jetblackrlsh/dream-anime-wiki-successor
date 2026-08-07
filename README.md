@@ -4,15 +4,19 @@ A searchable, GitHub-native archive of Dream Anime episodes. The site keeps epis
 
 ## Why this architecture
 
-- **Agent-friendly:** an agent adds a `.wiki` file and pushes a commit through GitHub.
-- **Human-friendly:** pages can be created or edited in GitHub's web editor.
+- **Agent-managed:** Jet's authorized ChatGPT Work cloud pipeline publishes each `.wiki` file and cover through GitHub.
+- **Read-only for visitors:** the public repository exposes source for transparency, but the site does not offer public or manual page submission controls.
 - **No local runner:** GitHub Actions builds and deploys the public site in the cloud.
 - **Portable:** the source remains plain MediaWiki wikitext rather than being locked into a database or CMS.
 - **Searchable:** the build indexes titles, page contents, and original dream creation dates.
 
-## Add a page
+## Publishing policy
 
-Copy [`content/_templates/dream-anime-episode.wiki`](content/_templates/dream-anime-episode.wiki) into `content/episodes/`, rename it, and fill in the wikitext. If the page has artwork, place it in `public/images/` and use that filename in `image1=`.
+New episodes are published only through the private `dream-pipeline-work-web` skill running in ChatGPT Work. The cloud agent retrieves the canonical Dream Journal, generates the cover, creates the MediaWiki source, commits both files, and verifies the GitHub Pages deployment.
+
+Public visitors can read the repository and may technically fork it under GitHub's public-repository model, but they cannot push changes to this repository or publish pages to the production site without authenticated write access granted by the owner. Pull requests from outside contributors are not an accepted publishing route.
+
+Repository maintainers can validate the site build with:
 
 ```powershell
 npm test
