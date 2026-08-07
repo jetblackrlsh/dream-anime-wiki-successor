@@ -55,6 +55,6 @@ test('builds a standards-friendly RSS feed with absolute episode links', () => {
   assert.match(rss, /<atom:link href="https:\/\/example\.com\/dream-wiki\/rss\.xml"/);
   assert.match(rss, /<title>Stars &amp; Dreams<\/title>/);
   assert.match(rss, /<link>https:\/\/example\.com\/dream-wiki\/wiki\/stars-dreams\/<\/link>/);
-  assert.match(rss, /<pubDate>Thu, 06 Aug 2026 00:00:00 GMT<\/pubDate>/);
+  assert.match(rss, /<pubDate>Thu, 06 Aug 2026 12:00:00 GMT<\/pubDate>/);
   assert.match(rss, /<description>A &lt;bright&gt; dream\.<\/description>/);
 });

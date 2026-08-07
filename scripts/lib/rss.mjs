@@ -13,7 +13,7 @@ export function buildRss({ episodes, siteBase, feedPath = 'rss.xml', limit = 50 
   const items = episodes.slice(0, limit).map((episode) => {
     const url = `${normalizedBase}/wiki/${episode.slug}/`;
     const pubDate = episode.date?.timestamp
-      ? new Date(episode.date.timestamp).toUTCString()
+      ? new Date(episode.date.timestamp + (12 * 60 * 60 * 1000)).toUTCString()
       : new Date(0).toUTCString();
     return `    <item>
       <title>${escapeXml(episode.title)}</title>
