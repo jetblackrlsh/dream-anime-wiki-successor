@@ -29,6 +29,11 @@ Open `dist/index.html` through a local HTTP server to preview the result. For ex
 npx serve dist
 ```
 
+## RSS
+
+The build publishes the latest 50 Dream Anime episodes as an RSS 2.0 feed at
+[`/rss.xml`](https://jetblackrlsh.github.io/dream-anime-wiki-successor/rss.xml). Every page also advertises the feed for compatible browsers and feed readers.
+
 ## Import from Fandom
 
 The migration script reads every namespace-0 page in `Category:Dream Anime Episode`, preserves its raw wikitext, and creates an attribution/provenance catalog.

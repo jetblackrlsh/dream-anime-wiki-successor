@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import {
   escapeHtml, extractDreamDate, parseInfobox, plainText, renderWikitext, slugify, titleFromSource
 } from './lib/wiki.mjs';
+import { buildRss } from './lib/rss.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const contentDir = path.join(root, 'content', 'episodes');
@@ -14,6 +15,7 @@ const rawBase = process.env.BASE_PATH ?? (repositoryName ? `/${repositoryName}` 
 const base = rawBase.replace(/\/$/, '');
 const homeUrl = `${base}/` || '/';
 const repo = process.env.GITHUB_REPOSITORY || 'jetblackrlsh/dream-anime-wiki-successor';
+const publicSiteBase = 'https://jetblackrlsh.github.io/dream-anime-wiki-successor';
 
 function siteUrl(value = '') {
   return `${base}/${String(value).replace(/^\//, '')}`;
@@ -43,6 +45,7 @@ function shell({ title, description, body, pageClass = '', canonicalPath = '', s
   <meta name="description" content="${escapeHtml(description)}">
   <title>${escapeHtml(title)} · Dream Anime Wiki</title>
   <link rel="canonical" href="${escapeHtml(canonicalPath)}">
+  <link rel="alternate" type="application/rss+xml" title="Dream Anime Wiki RSS" href="${publicSiteBase}/rss.xml">
   <link rel="icon" href="${siteUrl('favicon.svg')}" type="image/svg+xml">
   <link rel="stylesheet" href="${siteUrl('styles.css')}">
   ${structuredData}
@@ -228,6 +231,7 @@ const searchIndex = episodes.map((episode) => ({
   text: episode.text
 }));
 await writeFile(path.join(distDir, 'search-index.json'), JSON.stringify(searchIndex));
+await writeFile(path.join(distDir, 'rss.xml'), buildRss({ episodes, siteBase: publicSiteBase }));
 await writeFile(path.join(distDir, '.nojekyll'), '');
 await writeFile(path.join(distDir, '404.html'), shell({
   title: 'Dream not found',

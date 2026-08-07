@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { extractDreamDate, parseInfobox, plainText, renderWikitext, slugify } from '../scripts/lib/wiki.mjs';
+import { buildRss } from '../scripts/lib/rss.mjs';
 
 const sample = `\uFEFF{{Infobox|title1=Lucid_Test|image1=Lucid-Test.png}}
 
@@ -37,4 +38,23 @@ test('plain text is suitable for full-text search', () => {
   const text = plainText(sample);
   assert.match(text, /gold portal/);
   assert.doesNotMatch(text, /Infobox|Category:/);
+});
+
+test('builds a standards-friendly RSS feed with absolute episode links', () => {
+  const rss = buildRss({
+    siteBase: 'https://example.com/dream-wiki/',
+    episodes: [{
+      title: 'Stars & Dreams',
+      slug: 'stars-dreams',
+      summary: 'A <bright> dream.',
+      date: { timestamp: Date.UTC(2026, 7, 6) }
+    }]
+  });
+
+  assert.match(rss, /^<\?xml version="1\.0" encoding="UTF-8"\?>/);
+  assert.match(rss, /<atom:link href="https:\/\/example\.com\/dream-wiki\/rss\.xml"/);
+  assert.match(rss, /<title>Stars &amp; Dreams<\/title>/);
+  assert.match(rss, /<link>https:\/\/example\.com\/dream-wiki\/wiki\/stars-dreams\/<\/link>/);
+  assert.match(rss, /<pubDate>Thu, 06 Aug 2026 00:00:00 GMT<\/pubDate>/);
+  assert.match(rss, /<description>A &lt;bright&gt; dream\.<\/description>/);
 });

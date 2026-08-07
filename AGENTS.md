@@ -5,7 +5,7 @@ This repository is the GitHub-native successor to the Dream Anime Wiki.
 ## Adding an episode
 
 1. Create one UTF-8 `.wiki` file in `content/episodes/`.
-2. Use ordinary MediaWiki wikitext. Start from `content/_templates/dream-anime-episode.wiki`.
+2. Use ordinary MediaWiki wikitext that follows the publishing contract in the authorized Dream Pipeline skill.
 3. Include `[[Category:Dream Anime Episode]]` exactly.
 4. Include a Notes sentence in this form so date search works:
    `This dream anime episode was originally created on Month DD, YYYY`
@@ -16,4 +16,4 @@ Do not hand-edit `content/import-catalog.json`; it records the one-time Fandom m
 
 ## Delivery
 
-Commits pushed to `main` deploy automatically to GitHub Pages. Keep page-source changes narrow: normally one `.wiki` file plus any images it needs.
+Only Jet's authorized ChatGPT Work agent publishes new pages. Commits pushed to `main` deploy automatically to GitHub Pages. Keep page-source changes narrow: normally one `.wiki` file plus any images it needs.
